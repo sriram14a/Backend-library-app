@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+import cors from "cors"
 import express from "express";
 import { MongoClient } from "mongodb";
 import { bookRouter } from "./routes/book.js";
@@ -22,6 +23,7 @@ async function createConnection() {
 
 export const client = await createConnection();
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("welcome to library");
